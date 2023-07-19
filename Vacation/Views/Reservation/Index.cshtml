@@ -1,0 +1,121 @@
+﻿@model Reservation
+
+<div class="second-page-heading">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4>Gitmek İsteyeceğiniz Şehirler </h4>
+                <h2>Rezervasyon Yap</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt uttersi labore et dolore magna aliqua is ipsum suspendisse ultrices gravida</p>
+                <div class="main-button"><a href="/home/deals">Daha Fazla</a></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="more-info reservation-info">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-sm-6">
+                <div class="info-item">
+                    <i class="fa fa-phone"></i>
+                    <h4>Bize Telefonla Ulaşın</h4>
+                    <a href="#">+123 456 789 (0)</a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <div class="info-item">
+                    <i class="fa fa-envelope"></i>
+                    <h4>Email</h4>
+                    <a href="#">company@email.com</a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <div class="info-item">
+                    <i class="fa fa-map-marker"></i>
+                    <h4>Adresimiz</h4>
+                    <a href="#">24th Street North Avenue London, UK</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="reservation-form">
+    <div class="container">
+        <div class="row">
+            @if (TempData["Success"] != null) 
+            {
+             <div class="alert alert-success text-center" role="alert"> 
+                 @TempData["Success"]
+                 </div>
+            }
+            <div class="col-lg-12">
+                <div id="map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d203747.7479244494!2d27.47538355!3d37.068001499999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14be690a19447b77%3A0xece9bcb1ff043041!2zQm9kcnVtL011xJ9sYQ!5e0!3m2!1str!2str!4v1686148115286!5m2!1str!2str" width="1300" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <hr />
+                @if (TempData["Success"] == null)
+                {
+                    <form id="reservation-form" name="gs" method="post" asp-controller="reservation" asp-action="index" role="search">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h4>Formu Doldur <em> Rezervasyonunu </em>Yap <em></em></h4>
+                            </div>
+                            <div class="col-lg-6">
+                                <fieldset>
+                                    <label for="Name" class="form-label" asp-for="Name"></label>
+                                    <input asp-for="Name" class="Name" placeholder="Adınız soyadınız" autocomplete="on" required>
+                                </fieldset>
+                            </div>
+                            <div class="col-lg-6">
+                                <fieldset>
+                                    <label for="Number" class="form-label" asp-for="Phone">Telefon</label>
+                                    <input asp-for="Phone" class="Number" placeholder="Ex. +xxx xxx xxx" autocomplete="on" required>
+                                </fieldset>
+                            </div>
+                            <div class="col-lg-6">
+                                <fieldset>
+                                    <label for="chooseGuests" class="form-label" asp-for="Guest">Ziyaretçi Sayısı</label>
+                                    <select asp-for="Guest" class="form-select" aria-label="Default select example" id="chooseGuests" onChange="this.form.click()">
+                                        <option selected>ex. 3 or 4 or 5</option>
+                                        <option type="checkbox" name="option1" value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4+">4+</option>
+                                    </select>
+                                </fieldset>
+                            </div>
+                            <div class="col-lg-6">
+                                <fieldset>
+                                    <label for="Number" class="form-label" asp-for="Checkindate">Rezervasyon Tarihi</label>
+                                    <input asp-for="Checkindate" class="date" required>
+                                </fieldset>
+                            </div>
+                            <div class="col-lg-12">
+                                <fieldset>
+                                    <label for="chooseDestination" class="form-label" asp-for="Destination">Gidilecek Yer</label>
+                                    <select asp-for="Destination" class="form-select" aria-label="Default select example" id="chooseCategory" onChange="this.form.click()">
+                                        <option selected>ex. Switzerland, Lausanne</option>
+                                        <option value="Italy, Roma">Italy, Roma</option>
+                                        <option value="France, Paris">France, Paris</option>
+                                        <option value="Engaland, London">Engaland, London</option>
+                                        <option value="Switzerland, Lausanne">Switzerland, Lausanne</option>
+                                    </select>
+                                </fieldset>
+                            </div>
+                            <div class="col-lg-12">
+                                <fieldset>
+                                    <button class="main-button" type="submit">Rezervasyonunu Yap</button>
+                                </fieldset>
+                            </div>
+                        </div>
+                        @Html.AntiForgeryToken()
+                    </form>
+                }
+            </div>
+        </div>
+    </div>
+</div>
